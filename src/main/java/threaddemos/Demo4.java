@@ -14,11 +14,30 @@ public class Demo4 {
 }
 
 class Demo4Ticket implements Runnable {
-    private int count = 200;
+    private static int count = 200;
 
     public void run() {
         while (count > 0) {
-            System.out.println("runnable" + Thread.currentThread().getName() + "sold tick: " + count--);
+            this.sold();
         }
+    }
+
+    private synchronized static void sold() {
+        if (count == 0) return;
+        System.out.println("runnable " + Thread.currentThread().getName() + " sold tick: " + count--);
+    }
+}
+
+
+class Singleton {
+    private static Singleton s;
+    private Singleton() {}
+
+    public static Singleton getInstance() {
+        if (s == null)
+            synchronized (Singleton.class) {
+                if (s == null) s = new Singleton();
+            }
+        return s;
     }
 }
