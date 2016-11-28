@@ -1,5 +1,7 @@
 package threaddemos;
 
+import java.util.concurrent.ExecutorService;
+
 /**
  * 获取线程信息
  */
@@ -17,6 +19,7 @@ class Demo2Main {
     public static void main(String[] args) {
         new Demo2("thead name").start();
         System.out.println(Thread.currentThread().getName());
+
     }
 
 }
